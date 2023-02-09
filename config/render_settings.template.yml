@@ -1,0 +1,21 @@
+scene:
+  render:
+    resolution_x: 1920
+    resolution_y: 1080
+    resolution_percentage: 100
+    engine: CYCLES
+    use_compositing: False
+    use_motion_blur: False
+    fps: 24
+    fps_base: 1.0
+  cycles:
+    samples: 5
+    use_denoising: False
+  frame_start: 1
+  frame_end: 3
+  frame_current: 1
+  view_settings:
+    view_transform: Filmic Log
+    look: None
+    exposure: 0.0
+    gamma: 1.0
