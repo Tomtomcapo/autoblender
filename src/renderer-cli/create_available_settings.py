@@ -1,13 +1,20 @@
 import inspect
-from pprint import pprint
 import bpy
-import json
-
 import mathutils
 import yaml
-import itertools
 
 def create_available_parameters_file(obj, path="", processed_ids=None, exclude=[]):
+    """
+    Create the file "available_settings.yml" containing all configurable parameters from Blender.
+    Set all the parameters to "disabled", meaning that it is not possible for the user
+    to set them in the file "render_settings.yml" (they will not be used to override parameters
+    from Blender .blend file).
+    :param obj:
+    :param path:
+    :param processed_ids:
+    :param exclude:
+    :return:
+    """
     if processed_ids is None:
         processed_ids = set()
 
@@ -34,7 +41,8 @@ def create_available_parameters_file(obj, path="", processed_ids=None, exclude=[
             continue
     return members_tree
 
-exclusion = [
+AVAILABLE_SETTINGS_FILE_PATH = "../../config/available_settings.yml"
+EXCLUDED = [
     "identifier",
     "description",
     "rna_type",
@@ -48,9 +56,9 @@ exclusion = [
     "data",
 ]
 
-scene_params = {"scene": create_available_parameters_file(bpy.context.scene, exclude=exclusion)}
+scene_params = {"scene": create_available_parameters_file(bpy.context.scene, exclude=EXCLUDED)}
 
 yaml_string = yaml.dump(scene_params, default_flow_style=False)
-with open('../../config/available_settings.yml', 'w') as file:
+with open(AVAILABLE_SETTINGS_FILE_PATH, 'w') as file:
     file.write(yaml_string)
 

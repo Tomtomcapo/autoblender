@@ -123,6 +123,10 @@ class RendererProcessor(object):
             print_summary_element(key, val)
 
     def print_analytics(self):
+        """
+        Print analytics generated from the scene data.
+        :return:
+        """
         # Initialize the polygon count
         polygon_count = 0
         vertex_count = 0
@@ -156,6 +160,10 @@ class RendererProcessor(object):
             print_analytics_element(key, val)
 
     def get_scene_bounding_box(self):
+        """
+        Calculate scene bounding box.
+        :return:
+        """
         # Get a reference to the scene
         scene = bpy.context.scene
 
@@ -186,6 +194,10 @@ class RendererProcessor(object):
         return (min_x, min_y, min_z), (max_x, max_y, max_z)
 
     def get_scene_bounding_box_size(self):
+        """
+        Calculate scene bounding box size.
+        :return:
+        """
         min_point, max_point = self.get_scene_bounding_box()
 
         # Calculate the size of the x, y, and z axes
@@ -197,6 +209,10 @@ class RendererProcessor(object):
         return size_x, size_y, size_z
 
     def render(self):
+        """
+        Render the scene.
+        :return:
+        """
         bpy.ops.render.render('INVOKE_DEFAULT', write_still=True, animation=True)
 
     def init(self):

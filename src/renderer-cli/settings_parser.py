@@ -9,6 +9,11 @@ class SettingsParser(object):
 
     @staticmethod
     def parse(settings_file: str):
+        """
+        Parse settings file.
+        :param settings_file:
+        :return:
+        """
         with open(settings_file) as f:
             data = yaml.load(f, Loader=SafeLoader)
             return data
