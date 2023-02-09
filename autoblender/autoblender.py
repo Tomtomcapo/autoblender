@@ -1,18 +1,11 @@
-#!/usr/bin/env python3
-"""
-Module Docstring
-"""
-
-__author__ = "Your Name"
-__version__ = "0.1.0"
-__license__ = "MIT"
 
 import argparse
 import os
 from pathlib import Path
-from src.autoblender.renderer_processor import RendererProcessor
-from src.autoblender.settings_parser import SettingsParser
-from src.autoblender.logger import *
+
+from autoblender.logger import *
+from autoblender.renderer_processor import RendererProcessor
+from autoblender.settings_parser import SettingsParser
 
 
 def main(args):
@@ -52,24 +45,3 @@ def main(args):
         log_info("dry_run_done", "Dry run is done.")
 
 
-if __name__ == "__main__":
-    """ This is executed when run from the command line """
-    parser = argparse.ArgumentParser()
-
-    # Required positional argument
-    parser.add_argument("file", help="Required blender (.blend) file")
-
-    # Optional argument flag which defaults to False
-    parser.add_argument("-s", "--settings", action="store", default=None)
-
-    # Optional argument flag which defaults to False
-    parser.add_argument("-d", "--dry-run", action="store_true", default=False)
-
-    # Specify output of "--version"
-    parser.add_argument(
-        "-v", "--version",
-        action="version",
-        version="Blender Renderer (version {version})".format(version=__version__))
-
-    args = parser.parse_args()
-    main(args)

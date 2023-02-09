@@ -41,7 +41,7 @@ def create_available_parameters_file(obj, path="", processed_ids=None, exclude=[
             continue
     return members_tree
 
-AVAILABLE_SETTINGS_FILE_PATH = "../../config/available_settings.yml"
+AVAILABLE_SETTINGS_FILE_PATH = "../config/available_settings.yml"
 EXCLUDED = [
     "identifier",
     "description",

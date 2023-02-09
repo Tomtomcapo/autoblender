@@ -1,7 +1,7 @@
 import os
 import unittest
 import bpy
-from src.autoblender.renderer_processor import RendererProcessor
+from autoblender.renderer_processor import RendererProcessor
 
 
 class RendererProcessorTests(unittest.TestCase):

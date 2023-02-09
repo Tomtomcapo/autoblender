@@ -4,10 +4,10 @@ import os
 import platform
 
 from pathlib import Path
-from src.autoblender.logger import *
 from yaml import safe_load
 
-from src.autoblender.singleton import Singleton
+from autoblender.logger import *
+from autoblender.singleton import Singleton
 
 
 class RendererProcessor(object):
