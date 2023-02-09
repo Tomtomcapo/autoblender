@@ -10,9 +10,9 @@ __license__ = "MIT"
 import argparse
 import os
 from pathlib import Path
-from renderer_processor import RendererProcessor
-from settings_parser import SettingsParser
-from logger import *
+from src.autoblender.renderer_processor import RendererProcessor
+from src.autoblender.settings_parser import SettingsParser
+from src.autoblender.logger import *
 
 
 def main(args):

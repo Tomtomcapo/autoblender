@@ -4,10 +4,10 @@ import os
 import platform
 
 from pathlib import Path
-from logger import *
+from src.autoblender.logger import *
 from yaml import safe_load
 
-from singleton import Singleton
+from src.autoblender.singleton import Singleton
 
 
 class RendererProcessor(object):
@@ -15,9 +15,10 @@ class RendererProcessor(object):
 
     AVAILABLE_SETTINGS_CONFIGURATION_FILE = f"..{os.sep}..{os.sep}config{os.sep}available_settings.yml"
 
-    def __init__(self, blender_file: str, settings: dict):
+    def __init__(self, blender_file: str, settings: dict, available_settings_file: str = AVAILABLE_SETTINGS_CONFIGURATION_FILE):
         self.blender_file = blender_file
         self.settings = settings
+        self.available_settings_file = available_settings_file
 
     def apply_parameters_from_settings(self):
         """
@@ -27,7 +28,7 @@ class RendererProcessor(object):
         # reset the filepath
         bpy.context.scene.render.filepath = f"//output{os.sep}frame_######"
 
-        with open(RendererProcessor.AVAILABLE_SETTINGS_CONFIGURATION_FILE, 'r') as stream:
+        with open(self.available_settings_file, 'r') as stream:
             available_settings = safe_load(stream)
 
         def dict_to_path_dict(d, path=None):

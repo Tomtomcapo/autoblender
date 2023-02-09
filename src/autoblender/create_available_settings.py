@@ -5,7 +5,7 @@ import yaml
 
 def create_available_parameters_file(obj, path="", processed_ids=None, exclude=[]):
     """
-    Create the file "available_settings.yml" containing all configurable parameters from Blender.
+    Create the file "available_settings_correct.yml" containing all configurable parameters from Blender.
     Set all the parameters to "disabled", meaning that it is not possible for the user
     to set them in the file "render_settings.yml" (they will not be used to override parameters
     from Blender .blend file).

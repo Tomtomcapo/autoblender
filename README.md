@@ -12,6 +12,8 @@ In short:
 - Detailed logs provide insight into the progress of render processes and support efficient monitoring.
 - The wide range of available parameters allows for precise control over every aspect of the render process.
 
+AutoBlender uses bpy from pip to run the render. Blender binaries are not needed inside the host system.
+
 ## Table of Contents
 
 - [Installation](#installation)
