@@ -17,7 +17,7 @@ AutoBlender uses bpy from pip to run the render. Blender binaries are not needed
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Getting started](#getting-started)
 - [Contribute](#contribute)
 - [License](#license)
 
