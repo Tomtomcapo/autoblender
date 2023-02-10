@@ -13,13 +13,14 @@ build_docker_image:
   script:
     - podman build -t "$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
     - podman images
+  artifacts:
+      untracked: true
   only:
     - master
 
 push_docker_image:
   stage: push
   script:
-    - podman images
     - podman push $podman_args "$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
