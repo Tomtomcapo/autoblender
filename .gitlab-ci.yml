@@ -11,13 +11,15 @@ before_script:
 build_docker_image:
   stage: build
   script:
-    - podman build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
+    - podman build -t "$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
+    - podman images
   only:
     - master
 
 push_docker_image:
   stage: push
   script:
-    - podman push $podman_args "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
+    - podman images
+    - podman push $podman_args "$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
