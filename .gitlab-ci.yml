@@ -12,15 +12,19 @@ build_docker_image:
   stage: build
   script:
     - podman build -t "$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
-    - podman images
+    - mkdir image
+    - podman save app > image/image.tar
   artifacts:
-      untracked: true
+    paths:
+      - image
   only:
     - master
 
 push_docker_image:
   stage: push
   script:
+    - podman load -i image/image.tar
+    - podman images
     - podman push $podman_args "$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
