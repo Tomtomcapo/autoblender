@@ -1,0 +1,23 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin "$REGISTRY_URL"
+
+stages:
+  - build
+  - push
+
+build_docker_image:
+  stage: build
+  script:
+    - docker build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
+
+push_docker_image:
+  stage: push
+  script:
+    - docker push "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
+  only:
+    - master
