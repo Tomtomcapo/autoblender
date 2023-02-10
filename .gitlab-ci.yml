@@ -4,12 +4,13 @@ stages:
   - build
 
 before_script:
-  - podman login --tls-verify=false -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" "$REGISTRY_URL"
+  - if [ "$INSECURE" = "true" ]; then podman_args="--tls-verify=false"; else podman_args=""; fi
+  - podman login $podman_args -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" "$REGISTRY_URL"
 
 build:
   stage: build
   script:
     - podman build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
-    - podman push --tls-verify=false "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
+    - podman push $podman_args "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
