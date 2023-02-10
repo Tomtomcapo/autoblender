@@ -7,6 +7,4 @@ ADD . /autoblender/
 WORKDIR /autoblender/
 RUN pip3 install -r requirements.txt
 
-USER autoblender
-
 CMD ["/bin/bash"]
