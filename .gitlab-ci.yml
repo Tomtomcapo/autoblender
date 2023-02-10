@@ -11,7 +11,7 @@ before_script:
 build_docker_image:
   stage: build
   script:
-    - podman build -t "$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
+    - podman build -t "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
     - mkdir image
     - podman save "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" > image/image.tar
   artifacts:
