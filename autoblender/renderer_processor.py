@@ -14,7 +14,7 @@ from autoblender.singleton import Singleton
 class RendererProcessor(object):
     __metaclass__ = Singleton
 
-    AVAILABLE_SETTINGS_CONFIGURATION_FILE = f"{os.path.abspath(autoblender.__file__)}{os.sep}..{os.sep}config{os.sep}available_settings.yml"
+    AVAILABLE_SETTINGS_CONFIGURATION_FILE = f"{os.path.dirname(autoblender.__file__)}{os.sep}..{os.sep}config{os.sep}available_settings.yml"
 
     def __init__(self, blender_file: str, settings: dict, available_settings_file: str = AVAILABLE_SETTINGS_CONFIGURATION_FILE):
         self.blender_file = blender_file
