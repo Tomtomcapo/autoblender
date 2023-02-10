@@ -4,15 +4,14 @@ services:
   - name: docker:dind
     command: ["--insecure-registry=$REGISTRY_URL"]
 
-before_script:
-  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin "$REGISTRY_URL"
-
 stages:
   - build
   - push
 
 build_docker_image:
   stage: build
+  before_script:
+    - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin "$REGISTRY_URL"
   script:
     - docker build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
 
