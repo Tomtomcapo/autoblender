@@ -2,6 +2,7 @@ image: docker:stable
 
 services:
   - name: docker:dind
+    alias: docker
     command: ["--insecure-registry=$REGISTRY_URL"]
 
 before_script:
