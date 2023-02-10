@@ -4,6 +4,9 @@ services:
   - name: docker:dind
     command: ["--insecure-registry=$REGISTRY_URL"]
 
+before_script:
+  - docker info
+
 stages:
   - build
   - push
