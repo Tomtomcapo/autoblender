@@ -1,7 +1,8 @@
 image: docker:latest
 
 services:
-  - docker:dind
+  - name: docker:dind
+    command: ["--insecure-registry=$REGISTRY_URL"]
 
 before_script:
   - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin "$REGISTRY_URL"
