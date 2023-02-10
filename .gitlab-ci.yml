@@ -1,17 +1,4 @@
-image: docker:stable
-
-services:
-  - name: docker:dind
-    alias: docker
-    command: ["--insecure-registry=$REGISTRY_URL"]
-
-variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
-
-before_script:
-  - docker info
+image: quay.io/podman/stable
 
 stages:
   - build
@@ -20,13 +7,15 @@ stages:
 build_docker_image:
   stage: build
   before_script:
-    - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin "$REGISTRY_URL"
+    - podman login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" "$REGISTRY_URL"
   script:
-    - docker build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
+    - podman build -t "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
 
 push_docker_image:
   stage: push
+  before_script:
+    - podman login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" "$REGISTRY_URL"
   script:
-    - docker push "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
+    - podman push "$REGISTRY_URL/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
