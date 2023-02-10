@@ -2,6 +2,7 @@ image: quay.io/podman/stable
 
 stages:
   - build
+  - push
 
 before_script:
   - if [ "$INSECURE" = "true" ]; then podman_args="--tls-verify=false"; else podman_args=""; fi
