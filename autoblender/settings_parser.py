@@ -1,7 +1,7 @@
 import yaml
 from yaml.loader import SafeLoader
 
-from singleton import Singleton
+from autoblender.singleton import Singleton
 
 
 class SettingsParser(object):
