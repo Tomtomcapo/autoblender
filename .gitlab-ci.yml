@@ -13,7 +13,7 @@ build_docker_image:
   script:
     - podman build -t "$CI_PROJECT_NAME:$CI_COMMIT_SHA" .
     - mkdir image
-    - podman save app > image/image.tar
+    - podman save "$CI_PROJECT_NAME:$CI_COMMIT_SHA" > image/image.tar
   artifacts:
     paths:
       - image
