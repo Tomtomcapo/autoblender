@@ -6,7 +6,7 @@ import platform
 from pathlib import Path
 from yaml import safe_load
 
-from autoblender import autoblender
+import autoblender
 from autoblender.logger import *
 from autoblender.singleton import Singleton
 
