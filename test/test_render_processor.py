@@ -1,9 +1,7 @@
-import io
 import os
 import unittest
 import bpy
-from Cython.Tests import xmlrunner
-
+import xmlrunner
 import test
 from autoblender.renderer_processor import RendererProcessor
 
@@ -39,7 +37,5 @@ class TestRendererProcessor(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(
-        testRunner=xmlrunner.XMLTestRunner(output='test-reports'),
-        # these make sure that some options that are not applicable
-        # remain hidden from the help menu.
+        testRunner=xmlrunner.XMLTestRunner(output=f'{TEST_PATH}{os.sep}test-reports'),
         failfast=False, buffer=False, catchbreak=False)
