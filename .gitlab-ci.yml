@@ -24,8 +24,12 @@ run_tests:
   script:
     - podman load -i image/image.tar
     - echo "Running tests"
-    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "ls -la && python3 -m unittest discover"
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "ls -la && python3 -m xmlrunner discover"
     - find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
+  artifacts:
+    reports:
+      junit:
+        - ./TEST-test.*.xml
 
 push_docker_image:
   stage: push
