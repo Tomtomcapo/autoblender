@@ -24,7 +24,7 @@ run_tests:
   script:
     - podman load -i image/image.tar
     - echo "Running tests"
-    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" -c "cd autoblender && python3 -m unittest"
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "cd autoblender && python3 -m unittest"
 
 push_docker_image:
   stage: push
