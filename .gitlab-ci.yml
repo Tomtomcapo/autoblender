@@ -25,6 +25,7 @@ run_tests:
     - podman load -i image/image.tar
     - echo "Running tests"
     - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "ls -la && python3 -m unittest discover"
+    - find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
 
 push_docker_image:
   stage: push
