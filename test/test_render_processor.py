@@ -4,7 +4,7 @@ import bpy
 from autoblender.renderer_processor import RendererProcessor
 
 
-class RendererProcessorTests(unittest.TestCase):
+class TestRendererProcessor(unittest.TestCase):
     def test_applied_parameters_when_correct_parameters(self):
         parameters = {
             'scene': {

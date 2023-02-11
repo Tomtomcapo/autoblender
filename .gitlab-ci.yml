@@ -2,6 +2,7 @@ image: quay.io/podman/stable
 
 stages:
   - build
+  - test
   - push
 
 before_script:
@@ -17,14 +18,19 @@ build_docker_image:
   artifacts:
     paths:
       - image
-  only:
-    - master
+
+run_tests:
+  stage: test
+  script:
+    - podman load -i image/image.tar
+    - echo "Running tests"
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" "python -m unittest"
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" "cd autoblender; python3 -m unittest"
 
 push_docker_image:
   stage: push
   script:
     - podman load -i image/image.tar
-    - podman images
     - podman push $podman_args "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA"
   only:
     - master
