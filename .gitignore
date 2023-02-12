@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 # Tests reports
-test_report*.xml
+TEST-test*.xml
