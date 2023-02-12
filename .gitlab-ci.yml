@@ -28,7 +28,7 @@ run_tests:
   artifacts:
     reports:
       junit:
-        - /autoblender/TEST-test*.xml
+        - TEST-test*.xml
 
 push_docker_image:
   stage: push
