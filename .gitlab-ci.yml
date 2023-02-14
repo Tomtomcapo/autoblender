@@ -24,7 +24,7 @@ run_tests:
   script:
     - podman load -i image/image.tar
     - echo "Running tests"
-    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "mkdir reports && python3 -m xmlrunner discover -o /$CI_PROJECT_DIR/reports && ls -la"
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "mkdir reports && python3 -m xmlrunner discover -o $CI_PROJECT_DIR/reports && ls -la"
   artifacts:
     reports:
       junit:
