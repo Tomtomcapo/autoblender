@@ -24,7 +24,8 @@ run_tests:
   script:
     - podman load -i image/image.tar
     - echo "Running tests"
-    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "python3 -m xmlrunner discover -o reports && ls -la"
+    - mkdir reports
+    - podman run --rm "$REGISTRY_URL/$CI_PROJECT_NAME:$CI_COMMIT_SHA" /bin/bash -c "python3 -m xmlrunner discover -o reports && ls -la"  -v $CI_PROJECT_DIR/reports:/autoblender/reports
     - ls -la reports
     - mv reports $CI_PROJECT_DIR/
     - ls -la $CI_PROJECT_DIR/reports
