@@ -1,6 +1,8 @@
+dist: jammy
 language: python
-python:
-  - "3.10"
-  - "3.11"
+matrix:
+  include:
+    - python: 3.10
 install:
   - poetry install
+  - echo "done!"
