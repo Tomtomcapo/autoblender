@@ -4,7 +4,8 @@ matrix:
   include:
     - python: 3.10
 install:
-  - sudo apt install python3-poetry
+  - pip install pipx
+  - pipx install poetry
   - ls -la
   - poetry install
   - ls -la
