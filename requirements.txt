@@ -1,3 +1,0 @@
-bpy
-pyyaml
-unittest-xml-reporting

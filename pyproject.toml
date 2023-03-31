@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "autoblender"
+version = "0.1.0"
+description = "A tool to automate Blender rendering with customizable YAML-based configuration"
+authors = ["Thomas Capodano"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11.0"
+bpy = "3.5.0"
+PyYAML = "^6.0"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
