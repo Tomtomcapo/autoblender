@@ -23,18 +23,30 @@ AutoBlender uses bpy from pip to run the render. Blender binaries are not needed
 
 ## Installation
 
+AutoBlender uses Poetry as dependencies manager and tool for building.
+
+If you want the virtual environment to be created inside the project's folder (can be useful for you IDE), run this command:
+
+```commandline
+poetry config virtualenvs.in-project true
+```
+
+Be careful, this command will affect your whole system!
+
 To install AutoBlender, simply clone this repository and run:
 
 ```
-pip install -r requirements.txt
+poetry install
 ```
+
+It will install all the dependencies inside a virtual environment.
 
 ## Getting started
 
 To run AutoBlender, simply navigate to the src/renderer-cli/ directory and execute the following command:
 
 ```
-python autoblender.py [file] [-s --settings file] [-d --dry-run]
+poetry run python -m autoblender [file] [-s --settings file] [-d --dry-run]
 ```
 
 - `file`: .blend file, mandatory
@@ -48,7 +60,7 @@ This will print a summary of the specified parameters, analytics, and launch the
 Consider the following example:
 
 ```
-python autoblender.py myfile.blend -s render_settings.yml
+poetry run python -m autoblender myfile.blend -s render_settings.yml
 ```
 This will run AutoBlender using the myfile.blend file and the settings specified in render_settings.yml.
 
